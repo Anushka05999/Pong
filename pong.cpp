@@ -1,8 +1,9 @@
 #include <SFML/Graphics.hpp>
 #include <sstream>
 #include <iostream>
-#include "Bat.h"
-#include "Ball.h"
+#include "Bat.cpp"
+#include "Ball.cpp"
+
 
 using namespace sf;
 
@@ -100,17 +101,18 @@ int main() {
             // (You can also add this inside Ball class if you prefer)
         }
 
-        if (ball.getPosition().top > 1080) {
-            // Reset above the bat
-            FloatRect batBounds = bat.getPosition();
-            ball = Ball(batBounds.left + batBounds.width / 2, batBounds.top - 30);
-            lives--;
+        if (ball.getPosition().top > 1080) 
+        {
+        	// Reset ball at the **top middle** of the screen after missing
+        	ball = Ball(960, 0); // X = screen center (1920/2), Y = 0 (top)
+        	lives--;
+        	if (lives < 1) 
+        	{
+        		isOver = true;
+        		lives = 0;
+    		}
+	}
 
-            if (lives < 1) {
-                isOver = true;
-                lives = 0;
-            }
-        }
 
         // Update game objects
         Time dt = clock.restart();
