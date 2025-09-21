@@ -23,7 +23,6 @@ void Ball::reboundSides()
 void Ball::reboundBatOrTop()
 {
 	m_DirectionY=-m_DirectionY;// reverse vertical direction
-	m_Speed *= 1.05f; // increase speed by 5%
 }
 void Ball::reboundBottom()
 {
